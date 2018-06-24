@@ -44,7 +44,9 @@
         "yii\\composer\\Installer::postCreateProject": {
             "setPermission": [
                 {
-                    "logs": "0777"
+                    "logs": "0777",
+                    "var": "0777",
+                    "src/models": "0777"
 
                 }
             ]

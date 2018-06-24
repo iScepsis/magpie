@@ -54,7 +54,11 @@
       <path value="$PROJECT_DIR$/vendor/dimsemenov/magnific-popup" />
     </include_path>
   </component>
-  <component name="PhpProjectSharedConfiguration" php_language_level="5.5.0" />
+  <component name="PhpProjectServersManager">
+    <servers>
+      <server host="localhost" id="a7151a98-b3dd-4b9d-b7d7-e380d2acf9e7" name="localhost" />
+    </servers>
+  </component>
   <component name="PhpUnit">
     <phpunit_settings>
       <PhpUnitSettings load_method="CUSTOM_LOADER" custom_loader_path="$PROJECT_DIR$/vendor/autoload.php" />

@@ -17,6 +17,16 @@ $app->get('/[{name}]', function (Request $request, Response $response, array $ar
 $app->get('/test/{name}', function (Request $request, Response $response, array $args) {
     // Sample log message
     $this->logger->info("Slim-Skeleton '/' route");
+    var_dump($request);
+    // Render index view
+    return $this->renderer->render($response, 'test.phtml', $args);
+});
+
+$app->get('/create-schema/', function (Request $request, Response $response, array $args) {
+    // Sample log message
+    $this->logger->info("Slim-Skeleton '/' route");
+
+    $db = $this->db;
 
     // Render index view
     return $this->renderer->render($response, 'test.phtml', $args);
