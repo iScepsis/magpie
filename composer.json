@@ -26,7 +26,10 @@
         "phpunit/phpunit": ">=4.8 < 6.0"
     },
     "autoload": {
-        "psr-4": { "": "src/" }
+        "psr-4": {
+            "": "src/",
+            "src\\models\\": "src/models/"
+        }
     },
     "autoload-dev": {
         "psr-4": {

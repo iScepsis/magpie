@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "40c8e68451d3194e911f8ea1cf7afe1d",
+    "content-hash": "ea480a347fb58a24e44f81d133e4514c",
     "packages": [
         {
             "name": "components/font-awesome",
@@ -1127,7 +1127,7 @@
         },
         {
             "name": "symfony/console",
-            "version": "v2.8.41",
+            "version": "v2.8.42",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",

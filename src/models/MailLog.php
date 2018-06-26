@@ -1,6 +1,5 @@
 <?php
-
-
+//src/models/MailLog.php
 namespace src\models;
 
 use Doctrine\ORM\Mapping as ORM;
