@@ -24,7 +24,7 @@ $container['logger'] = function ($c) {
 //Doctrine
 $container['db'] = function ($c) {
     $isDevMode = $c->get('settings')['mode'] != 'production';
-    $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/src"), $isDevMode);
+    $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__ . '/Entity/'), $isDevMode);
     $conn = array(
         'driver' => 'pdo_sqlite',
         'path' => __DIR__ . 'src/db/db.sqlite',
