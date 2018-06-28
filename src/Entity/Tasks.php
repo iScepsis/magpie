@@ -1,14 +1,14 @@
 <?php
 
-namespace Src\Entity;
+namespace src\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Tasks
  *
- * @ORM\Table(name="tasks")
  * @ORM\Entity
+ * @ORM\Table(name="tasks")
  */
 class Tasks
 {

@@ -1,14 +1,14 @@
 <?php
 
-namespace Src\Entity;
+namespace src\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * MailLog
  *
- * @ORM\Table(name="mail_log")
  * @ORM\Entity
+ * @ORM\Table(name="mail_log")
  */
 class MailLog
 {

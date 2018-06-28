@@ -28,7 +28,9 @@ return [
             'cache_dir' => APP_ROOT . '/../var/doctrine',
 
             // you should add any other path containing annotated entity classes
-            'metadata_dirs' => [APP_ROOT . '/../Src/Entity'],
+            'metadata_dirs' => [
+                APP_ROOT . '/../src/Entity',
+            ],
 
             'connection' => [
                 'driver' => 'pdo_sqlite',

@@ -2,7 +2,6 @@
 
 use Slim\Http\Request;
 use Slim\Http\Response;
-use src\Entity\Tasks;
 
 // Routes
 
@@ -32,14 +31,15 @@ $app->get('/create-schema/', function (Request $request, Response $response, arr
      */
     $db = $this->db;
 
-    $mailLog = new \Src\Entity\MailLog();
-    $mailLog->setFidTask(1);
+    $task = new \src\Entity\Tasks();
+    $task->setTitle('Тест');
+    $task->setDescription('Тест');
 
 
-    $db->persist($mailLog);
+    $db->persist($task);
     $db->flush();
 
-    echo "Created User with ID " . $mailLog->getId() . "\n";
+    echo "Created User with ID " . $task->getId() . "\n";
 
 
     // Render index view
