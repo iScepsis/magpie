@@ -2,7 +2,7 @@
 
 use Slim\Http\Request;
 use Slim\Http\Response;
-use src\models\Task;
+use src\Entity\Tasks;
 
 // Routes
 
@@ -32,7 +32,7 @@ $app->get('/create-schema/', function (Request $request, Response $response, arr
      */
     $db = $this->db;
 
-    $mailLog = new \src\models\MailLog();
+    $mailLog = new \Src\Entity\MailLog();
     $mailLog->setFidTask(1);
 
 
