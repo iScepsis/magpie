@@ -24,10 +24,17 @@ $container['logger'] = function ($c) {
 //Doctrine
 $container['db'] = function ($c) {
     $isDevMode = $c->get('settings')['mode'] != 'production';
-    $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__ . '/Entity/'), $isDevMode);
+    $settings = $c->get('settings');
+    $config = \Doctrine\ORM\Tools\Setup::createAnnotationMetadataConfiguration(
+        $settings['doctrine']['meta']['entity_path'],
+        $settings['doctrine']['meta']['auto_generate_proxies'],
+        $settings['doctrine']['meta']['proxy_dir'],
+        $settings['doctrine']['meta']['cache'],
+        false
+    );
     $conn = array(
         'driver' => 'pdo_sqlite',
-        'path' => __DIR__ . 'src/db/db.sqlite',
+        'path' => __DIR__ . '/../src/db/db.sqlite',
     );
 
 // obtaining the entity manager

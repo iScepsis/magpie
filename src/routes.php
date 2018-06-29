@@ -34,6 +34,8 @@ $app->get('/create-schema/', function (Request $request, Response $response, arr
     $task = new \src\Entity\Tasks();
     $task->setTitle('Тест');
     $task->setDescription('Тест');
+    $task->setTimeToNotify(time());
+    $task->setIsActual(1);
 
 
     $db->persist($task);
