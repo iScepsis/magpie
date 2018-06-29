@@ -38,7 +38,7 @@ class Tasks
     /**
      * @var integer
      *
-     * @ORM\Column(name="time_to_notify", type="integer", precision=0, scale=0, nullable=false, unique=false)
+     * @ORM\Column(name="time_to_notify", type="integer", precision=0, scale=0, nullable=true, unique=false)
      */
     private $timeToNotify;
 

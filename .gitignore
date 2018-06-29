@@ -32,3 +32,6 @@ phpunit.phar
 
 # vagrant runtime
 /.vagrant
+
+var/doctrine
+var/twig

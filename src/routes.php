@@ -29,7 +29,7 @@ $app->get('/create-schema/', function (Request $request, Response $response, arr
     /**
      * $db Doctrine\ORM\EntityManager
      */
-    $db = $this->db;
+    /*$db = $this->db;
 
     $task = new \src\Entity\Tasks();
     $task->setTitle('Тест');
@@ -41,9 +41,9 @@ $app->get('/create-schema/', function (Request $request, Response $response, arr
     $db->persist($task);
     $db->flush();
 
-    echo "Created User with ID " . $task->getId() . "\n";
+    echo "Created User with ID " . $task->getId() . "\n";*/
 
 
     // Render index view
-    return $this->renderer->render($response, 'test.phtml', $args);
+    return $this->view->render($response, 'index.twig', $args);
 });

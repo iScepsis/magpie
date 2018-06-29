@@ -10,6 +10,14 @@ return [
         'renderer' => [
             'template_path' => __DIR__ . '/../templates/',
         ],
+        'view' => [
+            'template_path' => __DIR__ . '/../templates',
+            'twig' => [
+                'cache' => __DIR__ . '/../var/twig',
+                'debug' => true,
+                'auto_reload' => true,
+            ],
+        ],
 
         // Monolog settings
         'logger' => [
