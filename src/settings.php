@@ -7,9 +7,9 @@ return [
         'addContentLengthHeader' => false, // Allow the web server to send the content-length header
 
         // Renderer settings
-        'renderer' => [
+        /*'renderer' => [
             'template_path' => __DIR__ . '/../templates/',
-        ],
+        ],*/
         'view' => [
             'template_path' => __DIR__ . '/../templates',
             'twig' => [
@@ -51,6 +51,7 @@ return [
                 'driver' => 'pdo_sqlite',
                 'path' => APP_ROOT . '/../src/db/db.sqlite',
             ]
-        ]
+        ],
+        'appUri' => 'http://localhost/magpie',
     ],
 ];

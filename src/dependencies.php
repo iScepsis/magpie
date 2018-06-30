@@ -7,10 +7,10 @@ use Doctrine\ORM\EntityManager;
 $container = $app->getContainer();
 
 // view renderer
-$container['renderer'] = function ($c) {
+/*$container['renderer'] = function ($c) {
     $settings = $c->get('settings')['renderer'];
     return new Slim\Views\PhpRenderer($settings['template_path']);
-};
+};*/
 
 $container['view'] = function ($c) {
     $settings = $c->get('settings');
@@ -18,6 +18,7 @@ $container['view'] = function ($c) {
     // Add extensions
     $view->addExtension(new Slim\Views\TwigExtension($c->get('router'), $c->get('request')->getUri()));
     $view->addExtension(new Twig_Extension_Debug());
+    $view->offsetSet('appUri', $settings['appUri']);
     return $view;
 };
 
@@ -48,4 +49,15 @@ $container['db'] = function ($c) {
 
 // obtaining the entity manager
     return EntityManager::create($conn, $config);
+};
+
+// -----------------------------------------------------------------------------
+// Action factories
+// -----------------------------------------------------------------------------
+$container['src\Actions\TasksAction'] = function ($c) {
+    return new src\Actions\TasksAction($c->get('view'), $c->get('logger'));
+};
+$container['App\Action\PhotoAction'] = function ($c) {
+    $photoResource = new \App\Resource\PhotoResource($c->get('em'));
+    return new App\Action\PhotoAction($photoResource);
 };

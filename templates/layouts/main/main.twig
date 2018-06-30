@@ -4,10 +4,16 @@
     <meta charset="utf-8"/>
     <title>{% block title %}{% endblock %}</title>
     {% block head %}
-
+        {% include 'layouts/main/head.twig' %}
     {% endblock %}
 </head>
 <body>
-    {% block content %}{% endblock %}
+    {% block header %}
+        {% include 'layouts/main/header.twig' %}
+    {% endblock %}
+    <div id="wrap" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        {% block content %}{% endblock %}
+    </div>
+
 </body>
 </html>
