@@ -1,7 +1,30 @@
 {% extends "layouts/main/main.twig" %}
 
-{% block title %} Magpie {% endblock %}
+{% block title %} Tasks {% endblock %}
 
 {% block content %}
-    Такие дела {{ appUri }}
+    <div id="accordion">
+    {% for task in tasks %}
+        <div class="card">
+            <div class="card-header" id="headerTask{{ task.id }}">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="task{{ task.id }}" aria-expanded="true" aria-controls="task{{ task.id }}">
+                        {{ task.title }}
+                    </button>
+                </h5>
+            </div>
+
+            <div id="task{{ task.id }}" class="collapse show" aria-labelledby="headerTask{{ task.id }}" data-parent="#accordion">
+                <div class="card-body">
+                    {{ task.description }}
+                </div>
+            </div>
+        </div>
+
+
+    {% endfor %}
+    </div>
+
+
+
 {% endblock %}

@@ -55,7 +55,7 @@ $container['db'] = function ($c) {
 // Action factories
 // -----------------------------------------------------------------------------
 $container['src\Actions\TasksAction'] = function ($c) {
-    return new src\Actions\TasksAction($c->get('view'), $c->get('logger'));
+    return new src\Actions\TasksAction($c);
 };
 $container['App\Action\PhotoAction'] = function ($c) {
     $photoResource = new \App\Resource\PhotoResource($c->get('em'));

@@ -3,19 +3,28 @@
 
 namespace src\Actions;
 
+use Doctrine\ORM\EntityManager;
 use Psr\Log\LoggerInterface;
 use Slim\Views\Twig;
+use Slim\Container;
 
 class BaseAction
 {
 
+    protected $slim;
     protected $view;
     protected $logger;
+    /**
+     * @var EntityManager
+     */
+    protected $db;
 
-    public function __construct(Twig $view, LoggerInterface $logger)
+    public function __construct(Container $c)
     {
-        $this->view = $view;
-        $this->logger = $logger;
+        $this->slim = $c;
+        $this->view = $c->get('view');
+        $this->logger = $c->get('logger');
+        $this->db = $c->get('db');
     }
 
 }
