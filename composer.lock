@@ -4,8 +4,28 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "12b6b71f1a830c0854cf511953a97c72",
+    "content-hash": "fbd520eb6da55a2ba31a289aaa3649a6",
     "packages": [
+        {
+            "name": "bordercloud/tether",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/BorderCloud/tether.git",
+                "reference": "71c1c347a14ac545a36376685453633aa14f4b40"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/BorderCloud/tether/zipball/71c1c347a14ac545a36376685453633aa14f4b40",
+                "reference": "71c1c347a14ac545a36376685453633aa14f4b40",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "Clone of hubspot/tether",
+            "homepage": "https://github.com/BorderCloud/tether.git",
+            "time": "2015-12-19T14:41:11+00:00"
+        },
         {
             "name": "components/font-awesome",
             "version": "5.0.6",
