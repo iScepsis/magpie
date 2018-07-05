@@ -5,14 +5,13 @@
 {% block content %}
     <div id="www">
     {% for task in tasks %}
-        <div class="card">
-            <div class="card-header" id="headerTask{{ task.id }}">
-                <h1 class="mb-0">
-                    <span class="collapsed" data-toggle="collapse" data-target="#task{{ task.id }}" aria-expanded="false" aria-controls="task{{ task.id }}">
+        <div class="card ">
+            <div class="card-header text-white bg-dark" id="headerTask{{ task.id }}">
+                <div class="mb-0">
+                    <span class="task-header collapsed" data-toggle="collapse" data-target="#task{{ task.id }}" aria-expanded="false" aria-controls="task{{ task.id }}">
                        {{ task.title }}
                     </span>
-                    <span>ыпыпыупassgsg1241414</span>
-                </h1>
+                </div>
 
             </div>
 
