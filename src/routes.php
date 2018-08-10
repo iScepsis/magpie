@@ -5,7 +5,9 @@ use Slim\Http\Response;
 
 // Routes
 
-$app->get('/tasks', 'src\Actions\TasksAction:index');
+$app->get('/', 'src\Actions\TasksAction:index');
+$app->get('/tasks/index', 'src\Actions\TasksAction:index');
+$app->get('/tasks/create', 'src\Actions\TasksAction:create');
 
 
 $app->get('/test/{name}', function (Request $request, Response $response, array $args) {
