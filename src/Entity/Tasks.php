@@ -3,6 +3,7 @@
 namespace src\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use src\Exceptions\TasksValidateException;
 
 /**
  * Tasks
@@ -107,6 +108,7 @@ class Tasks
     }
 
     /**
+     *
      * Set timeToNotify
      *
      * @param integer $timeToNotify
@@ -114,6 +116,8 @@ class Tasks
      */
     public function setTimeToNotify($timeToNotify)
     {
+        if (!is_numeric($timeToNotify)) $timeToNotify = strtotime($timeToNotify);
+
         $this->timeToNotify = $timeToNotify;
 
         return $this;

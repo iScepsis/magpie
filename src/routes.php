@@ -7,7 +7,7 @@ use Slim\Http\Response;
 
 $app->get('/', 'src\Actions\TasksAction:index');
 $app->get('/tasks/index', 'src\Actions\TasksAction:index');
-$app->get('/tasks/create', 'src\Actions\TasksAction:create');
+$app->any('/tasks/create', 'src\Actions\TasksAction:create');
 
 
 $app->get('/test/{name}', function (Request $request, Response $response, array $args) {
