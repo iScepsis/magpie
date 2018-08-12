@@ -17,7 +17,7 @@
                    data-timepicker="true"
                    data-time-format='hh:ii'
                    readonly="readonly"
-                   value="{{ task.getTimeToNotify() }}"
+                   value="{% if task.getTimeToNotify() is not empty %}{{ task.getTimeToNotify()|date("d.m.Y h:i") }}{% endif %}"
             >
             <small class="form-text text-muted">Time when you will receive to notify message</small>
         </div>

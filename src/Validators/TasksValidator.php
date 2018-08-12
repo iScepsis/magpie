@@ -30,7 +30,7 @@ class TasksValidator extends Validator
             ];
         }
 
-        if (!empty($task->getIsActual()) && $task->getIsActual() != '1') {
+        if ( !empty($task->getIsActual()) && !in_array($task->getIsActual(), ['0', '1']) ) {
             self::$validateLog['is_actual'] = [
                 'validateMessage' => "I don'n know how you get here, but your value is incorrect"
             ];

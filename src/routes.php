@@ -5,14 +5,18 @@ use Slim\Http\Response;
 
 // Routes
 
-$app->get('/', 'src\Actions\TasksAction:index');
+$app->get('/', 'src\Actions\TasksAction:index')->setName('index');
 $app->get('/tasks/index', 'src\Actions\TasksAction:index');
 $app->any('/tasks/create', 'src\Actions\TasksAction:create');
+$app->any('/tasks/update/{id}', 'src\Actions\TasksAction:update');
+
+$app->post('/tasks/toggle', 'src\Actions\TasksAction:toggle');
 
 
 $app->get('/test/{name}', function (Request $request, Response $response, array $args) {
     // Sample log message
     $this->logger->info("Slim-Skeleton '/' route");
+
     var_dump($request);
     // Render index view
     return $this->renderer->render($response, 'test.phtml', $args);
