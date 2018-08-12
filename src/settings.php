@@ -52,6 +52,6 @@ return [
                 'path' => APP_ROOT . '/../src/db/db.sqlite',
             ]
         ],
-        'appUri' => 'http://localhost/magpie',
+        'appUri' => 'http://localhost/magpie/public',
     ],
 ];
