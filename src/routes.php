@@ -5,8 +5,9 @@ use Slim\Http\Response;
 
 // Routes
 
-$app->get('/', 'src\Actions\TasksAction:index')->setName('index');
-$app->get('/tasks/index', 'src\Actions\TasksAction:index');
+$app->get('/', 'src\Actions\TasksAction:index')->setName('index'); //TODO: redirect
+$app->get('/tasks/index', 'src\Actions\TasksAction:index')->setName('tasks/index');
+$app->get('/tasks/archive', 'src\Actions\TasksAction:archive');
 $app->any('/tasks/create', 'src\Actions\TasksAction:create');
 $app->any('/tasks/update/{id}', 'src\Actions\TasksAction:update');
 

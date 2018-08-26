@@ -16,9 +16,18 @@ class TasksAction extends BaseAction
 
     public function index(Request $request, Response $response, array $args)
     {
-        $tasks = $this->getTasks(false);
+        $tasks = $this->getTasks(true);
 
         $this->view->render($response, 'tasks/index.twig', [
+            'tasks' => $tasks
+        ]);
+    }
+
+    public function archive(Request $request, Response $response, array $args)
+    {
+        $tasks = $this->getTasks(false);
+
+        $this->view->render($response, 'tasks/archive.twig', [
             'tasks' => $tasks
         ]);
     }
@@ -49,7 +58,7 @@ class TasksAction extends BaseAction
                 $this->db->persist($task);
                 $this->db->flush();
                 return $response->withRedirect( $request->getUri()->withPath(
-                    $this->slim->router->pathFor('index')
+                    $this->slim->router->pathFor('tasks/index')
                 ));
             }
         }
@@ -86,18 +95,19 @@ class TasksAction extends BaseAction
                 $this->db->persist($task);
                 $this->db->flush();
                 return $response->withRedirect( $request->getUri()->withPath(
-                    $this->slim->router->pathFor('index')
+                    $this->slim->router->pathFor('tasks/index')
                 ));
             }
         }
 
-        $this->view->render($response, 'tasks/create.twig', [
+        $this->view->render($response, 'tasks/update.twig', [
             'task' => $task,
             'validate' => TasksValidator::$validateLog
         ]);
     }
 
     /**
+     * Активация/деактивация задачи
      * @param Request $request
      * @param Response $response
      * @param array $args
@@ -109,16 +119,21 @@ class TasksAction extends BaseAction
      */
     public function toggle(Request $request, Response $response, array $args){
         $task = $this->db->find('src\Entity\Tasks', $request->getParam('id'));
-        if ($task !== null) {
-            $task->setIsActual($request->getParam('status'));
+        try {
+            if ($task !== null) {
+                $task->setIsActual((int)$request->getParam('status'));
 
-            if (TasksValidator::validate($task)) {
-                $this->db->persist($task);
-                $this->db->flush();
-                return $response->withJson(true);
-            }
-        } else  throw new NotFoundException("Task with {$request->getParam('id')} not found!");
-        return $response->withJson(false);
+                if (TasksValidator::validate($task)) {
+                    $this->db->persist($task);
+                    $this->db->flush();
+                    return $response->withJson(['result' => true]);
+                }
+            } else  throw new NotFoundException("Task with {$request->getParam('id')} not found!");
+        } catch (\Exception $e) {
+            return $response->withJson(['result' => false, 'message' => $e->getMessage()]);
+        }
+
+
     }
 
     /**

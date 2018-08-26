@@ -3,11 +3,13 @@
 {% block title %} Tasks {% endblock %}
 
 {% block content %}
+
+    <h2 class="text-center">Tasks archive</h2>
     <div id="tasks">
     {% for task in tasks %}
         <div class="card ">
 
-            <div class="card-header text-white bg-dark" id="headerTask{{ task.id }}">
+            <div class="card-header text-white {% if task.isActual == '1' %}bg-dark{% else %}bg-danger{% endif %}" id="headerTask{{ task.id }}">
                 <div class="mb-0">
                     <span class="task-header collapsed" data-toggle="collapse" data-target="#task{{ task.id }}" aria-expanded="false" aria-controls="task{{ task.id }}">
                        {{ task.title }}
@@ -26,7 +28,9 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             {% if task.isActual == '1' %}
-                                <button class="btn btn-danger deactivateTask" data-id="{{ task.id }}" data-hide-after="true">Deactivate</button>
+                                <button class="btn btn-danger deactivateTask" data-id="{{ task.id }}" data-redraw-after="true">Deactivate</button>
+                            {% else %}
+                                <button class="btn btn-success activateTask" data-id="{{ task.id }}" data-redraw-after="true">Activate</button>
                             {% endif %}
                             <a role="button" class="btn btn-primary" href="update/{{ task.id }}">Update</a>
                         </div>

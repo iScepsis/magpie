@@ -141,7 +141,7 @@ class Tasks
      */
     public function setIsActual($isActual)
     {
-        $this->isActual = $isActual;
+        $this->isActual = (int)$isActual;
 
         return $this;
     }

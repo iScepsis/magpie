@@ -1,10 +1,16 @@
-//лоадер
+var animationSpeed = 300; //Скорость эффектов испозльзующих анимацию
+
+/**
+ * Старт анимации загрузки
+ */
 function showLoading()
 {
     $('.loader').show();
 }
 
-//лоадер
+/**
+ * Завершение анимации загрузки
+ */
 function hideLoading()
 {
     $('.loader').hide();
