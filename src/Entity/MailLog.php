@@ -38,21 +38,21 @@ class MailLog
     /**
      * @var integer
      *
-     * @ORM\Column(name="send_time", type="integer", precision=0, scale=0, nullable=false, unique=false)
+     * @ORM\Column(name="send_time", type="integer", precision=0, scale=0, nullable=true, unique=false)
      */
     private $sendTime;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="attempt_num", type="integer", precision=0, scale=0, nullable=false, unique=false)
+     * @ORM\Column(name="attempt_num", type="integer", precision=0, scale=0, nullable=true, unique=false)
      */
     private $attemptNum;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="mail_result", type="integer", precision=0, scale=0, nullable=false, unique=false)
+     * @ORM\Column(name="mail_result", type="integer", precision=0, scale=0, nullable=true, unique=false)
      */
     private $mailResult;
 

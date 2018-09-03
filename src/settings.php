@@ -1,6 +1,9 @@
 <?php
 define('APP_ROOT', __DIR__);
 
+$dotenv = new Dotenv\Dotenv(APP_ROOT);
+$dotenv->load();
+
 return [
     'settings' => [
         'displayErrorDetails' => true, // set to false in production
@@ -53,5 +56,9 @@ return [
             ]
         ],
         'appUri' => 'http://localhost/magpie/public',
+        'mailSettings' => [
+
+        ],
+        'userMails' => ['fed_smolensk@mail.ru']
     ],
 ];

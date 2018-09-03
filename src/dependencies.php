@@ -6,12 +6,6 @@ use Doctrine\ORM\EntityManager;
 
 $container = $app->getContainer();
 
-// view renderer
-/*$container['renderer'] = function ($c) {
-    $settings = $c->get('settings')['renderer'];
-    return new Slim\Views\PhpRenderer($settings['template_path']);
-};*/
-
 $container['view'] = function ($c) {
     $settings = $c->get('settings');
     $view = new \Slim\Views\Twig($settings['view']['template_path'], $settings['view']['twig']);
@@ -57,7 +51,24 @@ $container['db'] = function ($c) {
 $container['src\Actions\TasksAction'] = function ($c) {
     return new src\Actions\TasksAction($c);
 };
-$container['App\Action\PhotoAction'] = function ($c) {
-    $photoResource = new \App\Resource\PhotoResource($c->get('em'));
-    return new App\Action\PhotoAction($photoResource);
+
+$container['mailer'] = function ($c) {
+    $settings = $c->get('settings')['mailer'];
+    $mailer = new \PHPMailer\PHPMailer\PHPMailer();
+    $mailer->Username = $settings['mailBox'];
+    $mailer->Password = $settings['mailPassword'];
+    $mailer->IsSMTP(); // enable SMTP
+    $mailer->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
+    $mailer->SMTPAuth = true; // authentication enabled
+    $mailer->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
+    $mailer->Host = "smtp.gmail.com";
+    $mailer->Port = 465; // or 587
+    $mailer->IsHTML(true);
+/*    $mail->Username = "email@gmail.com";
+    $mail->Password = "password";
+    $mail->SetFrom("example@gmail.com");
+    $mail->Subject = "Test";
+    $mail->Body = "hello";
+    $mail->AddAddress("email@gmail.com");*/
+    return $mailer;
 };

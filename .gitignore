@@ -35,3 +35,6 @@ phpunit.phar
 
 var/doctrine
 var/twig
+
+#configuration variables
+/src/.env

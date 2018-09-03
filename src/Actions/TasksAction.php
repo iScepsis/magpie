@@ -9,6 +9,7 @@ use Slim\Http\Response;
 use src\Entity\Tasks;
 use src\Exceptions\NotFoundException;
 use src\Exceptions\TasksValidateException;
+use src\Mappers\MailLogMapper;
 use src\Validators\TasksValidator;
 
 class TasksAction extends BaseAction
@@ -17,6 +18,8 @@ class TasksAction extends BaseAction
     public function index(Request $request, Response $response, array $args)
     {
         $tasks = $this->getTasks(true);
+
+        $mailer = $this->mailer;
 
         $this->view->render($response, 'tasks/index.twig', [
             'tasks' => $tasks
@@ -55,9 +58,15 @@ class TasksAction extends BaseAction
             $task->setIsActual($params['is_actual'] ?? null);
 
             if (TasksValidator::validate($task)) {
+
                 $this->db->persist($task);
                 $this->db->flush();
-                return $response->withRedirect( $request->getUri()->withPath(
+
+                if (!empty($task->getTimeToNotify())) {
+                    MailLogMapper::createMail($task);
+                }
+
+                return $response->withRedirect($request->getUri()->withPath(
                     $this->slim->router->pathFor('tasks/index')
                 ));
             }
@@ -94,7 +103,7 @@ class TasksAction extends BaseAction
             if (TasksValidator::validate($task)) {
                 $this->db->persist($task);
                 $this->db->flush();
-                return $response->withRedirect( $request->getUri()->withPath(
+                return $response->withRedirect($request->getUri()->withPath(
                     $this->slim->router->pathFor('tasks/index')
                 ));
             }
@@ -117,7 +126,8 @@ class TasksAction extends BaseAction
      * @throws \Doctrine\ORM\OptimisticLockException
      * @throws \Doctrine\ORM\TransactionRequiredException
      */
-    public function toggle(Request $request, Response $response, array $args){
+    public function toggle(Request $request, Response $response, array $args)
+    {
         $task = $this->db->find('src\Entity\Tasks', $request->getParam('id'));
         try {
             if ($task !== null) {
