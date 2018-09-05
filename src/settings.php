@@ -57,7 +57,8 @@ return [
         ],
         'appUri' => 'http://localhost/magpie/public',
         'mailSettings' => [
-
+            'mailBox' => 'paradoxsepsis@gmail.com',
+            'mailPassword' => '',
         ],
         'userMails' => ['fed_smolensk@mail.ru']
     ],

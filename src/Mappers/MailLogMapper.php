@@ -73,4 +73,30 @@ class MailLogMapper
         $query->setParameter(1, time());
         return $query->getResult();
     }
+
+    /**
+     * Помечаем сообщение как успешно отправленное
+     * @param int $id
+     */
+    public static function markAsSent(int $id){
+        $mail = DependenciesProvider::$db->find('\src\Entity\MailLog', $id);
+        $mail->setSendTime(time());
+        $mail->setAttemptNum(($mail->getAttemptNum ?? 0) + 1);
+        $mail->setMailResult(1);
+        DependenciesProvider::$db->persist($mail);
+        DependenciesProvider::$db->flush();
+    }
+
+    /**
+     * Помечаем сообщение как не отправленное
+     * @param int $id
+     */
+    public static function markAsUnsent(int $id){
+        $mail = DependenciesProvider::$db->find('\src\Entity\MailLog', $id);
+        $mail->setSendTime(null);
+        $mail->setAttemptNum(($mail->getAttemptNum ?? 0) + 1);
+        $mail->setMailResult(0);
+        DependenciesProvider::$db->persist($mail);
+        DependenciesProvider::$db->flush();
+    }
 }

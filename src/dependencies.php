@@ -53,7 +53,7 @@ $container['src\Actions\TasksAction'] = function ($c) {
 };
 
 $container['mailer'] = function ($c) {
-    $settings = $c->get('settings')['mailer'];
+    $settings = $c->get('settings')['mailSettings'];
     $mailer = new \PHPMailer\PHPMailer\PHPMailer();
     $mailer->Username = $settings['mailBox'];
     $mailer->Password = $settings['mailPassword'];
@@ -63,11 +63,10 @@ $container['mailer'] = function ($c) {
     $mailer->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
     $mailer->Host = "smtp.gmail.com";
     $mailer->Port = 465; // or 587
+    $mailer->CharSet = 'UTF-8';
     $mailer->IsHTML(true);
-/*    $mail->Username = "email@gmail.com";
-    $mail->Password = "password";
-    $mail->SetFrom("example@gmail.com");
-    $mail->Subject = "Test";
+    $mailer->SetFrom($settings['mailBox']);
+/*    $mail->Subject = "Test";
     $mail->Body = "hello";
     $mail->AddAddress("email@gmail.com");*/
     return $mailer;

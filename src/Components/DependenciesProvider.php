@@ -16,6 +16,7 @@ class DependenciesProvider
     public static $slim;
     public static $settings;
     public static $db;
+    public static $logger;
 
     /**
      * @param Container $c
@@ -25,6 +26,7 @@ class DependenciesProvider
         self::$slim = $c;
         self::$settings = $c->get('settings');
         self::$db = $c->get('db');
+        self::$logger = $c->get('logger');
 
     }
 }
