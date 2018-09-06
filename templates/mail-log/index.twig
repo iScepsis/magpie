@@ -1,0 +1,40 @@
+{% extends "layouts/main/main.twig" %}
+
+{% block title %} Mail log {% endblock %}
+
+{% block content %}
+    <table class="table">
+        <thead>
+            <tr class="table-dark">
+                <th>Task</th>
+                <th>Notification time</th>
+                <th>Send time</th>
+                <th>Sent result</th>
+                <th>Attempt count</th>
+                <th>Task is actual</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for mail in mails %}
+                {% if mail.mailResult == '0' %}
+                    {% set tr_class = 'table-danger' %}
+                {% elseif mail.mailResult == '1' %}
+                    {% set tr_class = 'table-success' %}
+                {% else %}
+                    {% set tr_class = 'table-active' %}
+                {% endif %}
+                <tr class="{{ tr_class }}">
+                    <td>{{ mail.title }}</td>
+                    <td>{{ mail.timeToNotify|date("d.m.Y h:i") }}</td>
+                    <td>{{ mail.sendTime|date("d.m.Y h:i:s") }}</td>
+                    <td>{{ mail.mailResult }}</td>
+                    <td>{{ mail.attemptNum }}</td>
+                    <td>{{ mail.isActual }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
+
+

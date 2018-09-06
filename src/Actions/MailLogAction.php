@@ -36,7 +36,7 @@ class MailLogAction extends BaseAction
                 if ($result) {
                     MailLogMapper::markAsSent($mail['id']);
                 } else {
-                    throw new \Exception();
+                    throw new \Exception('Mail not sent');
                 }
             } catch (\Exception $e) {
                 MailLogMapper::markAsUnsent($mail['id']);
@@ -45,6 +45,14 @@ class MailLogAction extends BaseAction
             }
 
         }
+    }
+
+
+    public function index(Request $request, Response $response, array $args)
+    {
+        $this->view->render($response, 'mail-log/index.twig', [
+            'mails' => MailLogMapper::getAllMails(),
+        ]);
     }
 
 }

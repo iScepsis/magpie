@@ -99,4 +99,41 @@ class MailLogMapper
         DependenciesProvider::$db->persist($mail);
         DependenciesProvider::$db->flush();
     }
+
+    public static function getAllMails(){
+        $rsm = new ResultSetMapping();
+        $rsm->addScalarResult('id', 'id');
+        $rsm->addScalarResult('fid_task', 'fid_task');
+        $rsm->addScalarResult('mail_to', 'mailTo');
+        $rsm->addScalarResult('send_time', 'sendTime');
+        $rsm->addScalarResult('attempt_num', 'attemptNum');
+        $rsm->addScalarResult('mail_result', 'mailResult');
+
+        $rsm->addScalarResult('task_id', 'task_id');
+        $rsm->addScalarResult('title', 'title');
+        $rsm->addScalarResult('time_to_notify', 'timeToNotify');
+        $rsm->addScalarResult('is_actual', 'isActual');
+
+        $sql = "SELECT m.id
+                      , m.fid_task
+                      , m.mail_to
+                      , m.send_time
+                      , m.attempt_num
+                      , m.mail_result
+                      , t.id as task_id
+                      , t.title
+                      , t.description
+                      , t.time_to_notify
+                      , CASE t.is_actual
+                          WHEN 1 THEN 'Yes'
+                          ELSE 'No'
+                        END as is_actual  
+                    FROM mail_log m
+                    JOIN tasks t ON t.ID = m.fid_task
+                    ORDER BY t.time_to_notify DESC
+                    ";
+
+        $query = DependenciesProvider::$db->createNativeQuery($sql, $rsm);
+        return $query->getResult();
+    }
 }
